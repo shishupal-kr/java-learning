@@ -1,0 +1,1 @@
+Model =Macbook Air, Processor = M2,storage= 256GB, Ram=8GB
