@@ -18,6 +18,7 @@ public class Linked_List {
         Fruits.remove(1);
         Fruits.addFirst("kela");
         Fruits.addLast("mango");
+
         System.out.println(Fruits);
 
         System.out.println(Fruits.lastIndexOf("kela"));

@@ -12,13 +12,16 @@ public class Stack_List {
         Fruit.push("orange");
 
         System.out.println(Fruit);
-        System.out.println("pop last element: " + Fruit.pop());
+        System.out.println("pop last element: " + Fruit.pop()); //remove
         System.out.println(Fruit);
-        System.out.println("peek last element: " + Fruit.peek());
+        System.out.println("peek last element: " + Fruit.peek()); //look
         System.out.println(Fruit);
 
         System.out.println(Fruit.search("Apple"));
         System.out.println(Fruit.peek());
         System.out.println(Fruit.get(0));
+        System.out.println(Fruit.empty());
+        System.out.println(Fruit.getLast());
+        System.out.println(Fruit.getFirst());
     }
 }
