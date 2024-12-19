@@ -11,6 +11,8 @@ public class Linked_List {
         Fruits.add("Banana");
         Fruits.add("Cherry");
         Fruits.add("orange");
+        Fruits.add("kiwi");
+
         System.out.println(Fruits);
 
         Fruits.remove(1);
