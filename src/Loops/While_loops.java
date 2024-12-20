@@ -7,9 +7,9 @@ public class While_loops {
 
         int i = 2;   //initilization of loop
 
-        while(i <= 5)    {
+        while(i <= 5)    {  //end after work
             System.out.println(i);
-            i++;
+            i++; //steps
         }
         System.out.print("out of while loop body");
     }
