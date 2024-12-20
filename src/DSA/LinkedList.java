@@ -10,7 +10,7 @@ public class LinkedList {
 
         Node(String data){
             this.data = data;
-            this.next = null;
+            this.next = null; // By default, the next pointer is null
         }
     }
 
@@ -22,22 +22,22 @@ public class LinkedList {
             return;
         }
         //making new node is head
-        newNode.next = head; //pointing toward head
-        head = newNode;
+        newNode.next = head; //pointing toward current head
+        head = newNode;  // Update head to point to the new node
     }
 
     //add last
     public void addLast(String data){
         Node newNode = new Node(data);
             if(head == null){
-                head = newNode;
+                head = newNode;  // If list is empty, new node becomes head
                 return;
         }
             Node currNode = head;
             while (currNode.next != null){
-                currNode = currNode.next;
+                currNode = currNode.next; // Traverse to the end
             }
-            currNode.next = newNode;
+            currNode.next = newNode;  // Link the new node at the end
     }
 
     //print
@@ -47,7 +47,7 @@ public class LinkedList {
             System.out.println("list is empty");
             return;
         }
-
+        //Traverse and print the list
         Node currNode = head;
         while(currNode != null) {
             System.out.print(currNode.data + " -> ");
@@ -55,11 +55,33 @@ public class LinkedList {
         }
         System.out.println("NULL");
     }
-    //delete first,last
-
+    //delete first
+    public void deleteFirst(){
+        if(head == null){ //corner case, eg- what if list is empty
+            System.out.println("list is empty");
+            return;
+        }
+        head = head.next;
+    }
+    //delete last
+    public void deleteLast(){
+        if(head == null){ //corner case, eg- what if list is empty
+            System.out.println("list is empty");
+            return;
+        }
+        Node secondLast = head;
+        Node lastNode = head.next;
+        while (lastNode != null) {
+            lastNode = lastNode.next;
+            secondLast = secondLast.next;
+        }
+        secondLast.next = null;
+    }
 
     public static void main(String[] args) {
+
         LinkedList list = new LinkedList();
+
         list.addFirst("a");
         list.addFirst("is");
         list.printList();
@@ -67,7 +89,6 @@ public class LinkedList {
         list.printList();
         list.addFirst("This");
         list.printList();
-
 
     }
 }
