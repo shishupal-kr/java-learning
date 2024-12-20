@@ -1,6 +1,8 @@
+package Conditional_statement;
+
 import java.util.Scanner;
 
-public class conditional_statement {
+public class test_ifelse {
     public static void main(String[] args) {
 
      Scanner scanner = new Scanner(System.in);
