@@ -55,6 +55,7 @@ public class LinkedList {
         }
         System.out.println("NULL");
     }
+    //delete first,last
 
 
     public static void main(String[] args) {
