@@ -1,3 +1,5 @@
+package Conditional_statement;
+
 import java.util.Scanner;
 
 public class Switch {
