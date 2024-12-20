@@ -3,6 +3,13 @@ package DSA;
 public class LinkedList {
 
   Node head;
+  private int size;
+
+  //for getting size of list
+    // marked by this // in code, where code for getsize
+  LinkedList(){   //constructor of class for size in seperate
+      this.size=0;
+  }
 
     class Node {
         String data;
@@ -11,6 +18,7 @@ public class LinkedList {
         Node(String data){
             this.data = data;
             this.next = null; // By default, the next pointer is null
+            size++; //
         }
     }
 
@@ -61,6 +69,7 @@ public class LinkedList {
             System.out.println("list is empty");
             return;
         }
+        size--; //
         head = head.next;
     }
     //delete last
@@ -69,6 +78,12 @@ public class LinkedList {
             System.out.println("list is empty");
             return;
         }
+        size--; //
+        if(head.next == null){  //corner case
+            head = null;
+            return;
+        }
+
         Node secondLast = head;
         Node lastNode = head.next;
         while (lastNode != null) {
@@ -76,6 +91,10 @@ public class LinkedList {
             secondLast = secondLast.next;
         }
         secondLast.next = null;
+    }
+
+    public int getSize(){ //
+      return size;
     }
 
     public static void main(String[] args) {
@@ -89,6 +108,12 @@ public class LinkedList {
         list.printList();
         list.addFirst("This");
         list.printList();
+
+        list.deleteLast();
+
+        list.addLast("LinkedList");
+        list.printList();
+        System.out.println(list.getSize());
 
     }
 }
