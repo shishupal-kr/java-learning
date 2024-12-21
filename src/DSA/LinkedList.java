@@ -6,7 +6,7 @@ public class LinkedList {
   private int size;
 
   //for getting size of list
-    // marked by this // in code, where code for getsize
+  // marked by this // in code, where code for getsize
   LinkedList(){   //constructor of class for size in seperate
       this.size=0;
   }
@@ -86,7 +86,7 @@ public class LinkedList {
 
         Node secondLast = head;
         Node lastNode = head.next;
-        while (lastNode != null) {
+        while (lastNode.next != null) {
             lastNode = lastNode.next;
             secondLast = secondLast.next;
         }
@@ -110,10 +110,9 @@ public class LinkedList {
         list.printList();
 
         list.deleteLast();
-
-        list.addLast("LinkedList");
         list.printList();
-        System.out.println(list.getSize());
-
+        list.deleteFirst();
+        list.printList();
+        System.out.print(list.getSize());
     }
 }
