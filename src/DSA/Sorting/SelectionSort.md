@@ -22,7 +22,7 @@ Space complexity: (O(1)) (in-place sorting)
 
 Step-by-Step Explanation of Selection Sort:
 
-Initial Array: [7, 8, 3, 1, 2]
+Initial Array: [7, 8, 3, 1, 2]   
 
 Step 1: i = 0
 	1.	Assume index 0 is the smallest (7 is the smallest).
