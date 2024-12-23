@@ -1,3 +1,25 @@
+Selection sort is a simple sorting algorithm that works by repeatedly 
+finding the smallest element from the unsorted portion of the array and swapping 
+it with the first element of the unsorted portion. Here is a brief explanation:  
+
+1.Divide the array:
+The array is divided into two parts: sorted and unsorted.
+2.Find the minimum: 
+In each pass, find the minimum element from the unsorted portion.
+3.Swap: 
+Swap the found minimum element with the first element of the unsorted portion.
+4.Repeat: 
+Move the boundary between the sorted and unsorted portions 
+one element to the right and repeat the process until the entire array is sorted.
+
+Time Complexity
+Best case: (O(n^2))
+Worst case: (O(n^2))
+
+Space Complexity
+Space complexity: (O(1)) (in-place sorting)
+
+
 Step-by-Step Explanation of Selection Sort:
 
 Initial Array: [7, 8, 3, 1, 2]

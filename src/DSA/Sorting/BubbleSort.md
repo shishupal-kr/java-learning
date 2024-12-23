@@ -1,3 +1,29 @@
+Bubble sort is a simple sorting algorithm that repeatedly steps through the list, 
+compares adjacent elements, and swaps them if they are in the wrong order. 
+The process is repeated until the list is sorted. Here is a brief explanation:  
+
+1.Compare Adjacent Elements: 
+Start with the first two elements and compare them.
+2.Swap if Necessary: 
+If the first element is greater than the second, swap them.
+3.Move to the Next Pair: 
+Move to the next pair of elements and repeat the comparison and swap if necessary.
+4.Repeat for Each Pass: 
+Continue this process for each pair of adjacent elements until the end of the list.
+5.Reduce the Range: 
+After each pass, the largest element will have "bubbled up" to its correct position, 
+so reduce the range of elements to be compared in the next pass.
+6.Stop When Sorted: 
+Repeat the passes until no swaps are needed, indicating that the list is sorted.
+
+Time Complexity
+Best case: (O(n)) (when the array is already sorted)
+Worst case: (O(n^2)) (when the array is sorted in reverse order)
+Space Complexity
+Space complexity: (O(1)) (in-place sorting)
+
+
+
 Step-by-Step Explanation of Bubble Sort:
 
 Initial Array: [7, 8, 3, 1, 2]

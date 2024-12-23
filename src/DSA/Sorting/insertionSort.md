@@ -1,3 +1,27 @@
+Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. 
+It is much less efficient on large lists than more advanced algorithms 
+such as quicksort, heapsort, or merge sort. Here is a brief explanation:  
+
+1.Start with the second element: 
+Assume the first element is already sorted.
+2.Compare the current element with the sorted portion: 
+Take the current element and compare it with elements in the sorted portion of the array.
+3.Shift elements: 
+If the current element is smaller than the compared element, shift the compared element one position to the right.
+4.Insert the current element: 
+Place the current element in its correct position in the sorted portion.
+5.Repeat: 
+Move to the next element and repeat the process until the entire array is sorted.
+
+Time Complexity:
+Best case:- (O(n)) (when the array is already sorted)
+Worst case:- (O(n^2)) (when the array is sorted in reverse order)
+
+Space Complexity
+Space complexity: (O(1)) (in-place sorting)
+
+
+
 Step-by-Step Explanation of Insertion Sort:
 
 Initial Array: [7, 8, 3, 1, 2]
