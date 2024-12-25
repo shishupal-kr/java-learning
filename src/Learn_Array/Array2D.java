@@ -22,6 +22,7 @@ public class Array2D {
                 {"vivo","mi","infinix"},
                 {"lava","xiaomi","micromax"}
         };
+
         System.out.println(brand[1][2]);
     }
 }
