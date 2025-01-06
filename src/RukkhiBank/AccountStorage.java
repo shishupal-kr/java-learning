@@ -50,10 +50,10 @@ public class AccountStorage {
             System.out.println("Error loading accounts: " + e.getMessage());
         }
     }
-    // Save all accounts to file
+    // Save all accounts to file in plain text format
     private static void saveAccountsToFile() {
         try {
-            File file = new File("/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt");  // You can specify the path here if necessary
+            File file = new File(AccountDetails);
             System.out.println("Saving accounts to: " + file.getAbsolutePath());
 
             // Create the file if it doesn't exist
@@ -61,16 +61,26 @@ public class AccountStorage {
                 file.createNewFile();
             }
 
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file,true));
-            oos.writeObject(accounts);
-            oos.close();
-            System.out.println("Accounts saved successfully.");
+            // Use FileWriter and BufferedWriter to write the file as text
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
+            // Iterate over each account and write its details in a readable format
+            for (Bank account : accounts.values()) {
+                String accountData = account.getAccountNumber() + ","
+                        + account.getAccountHolderName() + ","
+                        + account.getAccountType() + ","
+                        + account.getEmail() + ","
+                        + account.getBalance();
+                writer.write(accountData); // Write the account details as a comma-separated line
+                writer.newLine();  // Move to the next line
+            }
+
+            writer.close();
+            System.out.println("Accounts saved successfully in text format.");
         } catch (IOException e) {
             System.out.println("Error saving accounts: " + e.getMessage());
         }
-
     }
-
 
     public static void viewAllAccounts() {
         if (accounts.isEmpty()) {
