@@ -2,12 +2,9 @@ package RukkhiBank;
 
 import java.util.HashMap;
 import java.util.Scanner;
-
 import static RukkhiBank.Security.authenticateAdmin;
 
 public class BankingSystem {
-
-
 
     private static void CreateAccount() {
         Scanner sc = new Scanner(System.in);
@@ -60,7 +57,6 @@ public class BankingSystem {
     }
 
     public static void main(String[] args) {
-
         System.out.println("Welcome to ABC_Bank Banking System");
         boolean running = true;
 
@@ -93,6 +89,8 @@ public class BankingSystem {
                 case 5:
                     Exit();
                     break;
+
+                    //method for admin
                 case 99:
                     if (authenticateAdmin()) {
                         AccountStorage.viewAllAccounts();

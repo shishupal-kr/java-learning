@@ -18,4 +18,9 @@ public class Security {
             return false;
         }
     }
+
+    public static boolean isAdmin() {
+        boolean isAdmin = false;
+        return isAdmin;
+    }
 }
