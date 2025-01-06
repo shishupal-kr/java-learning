@@ -1,5 +1,4 @@
 package RukkhiBank;
-
 import java.util.Scanner;
 
 public class Security {

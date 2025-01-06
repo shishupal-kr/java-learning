@@ -1,6 +1,7 @@
 package RukkhiBank;
+import java.io.*;
 
-public class Bank {
+public class Bank implements Serializable {
     private String AccountHolderName;
     private String AccountNumber;
     private final String AccountType;
@@ -44,22 +45,24 @@ public class Bank {
         this.Email = Email;
     }
 
-
-    //deposit/withdraw features
+    //features for bank to deposit/withdraw cash
     public void Deposit(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance += amount;
+        if (amount > 0) {
+            this.balance += amount;
             System.out.println("\nDeposited Successfully: ₹" + amount);
             System.out.println("To Account Number: " + AccountNumber);
-            System.out.println("New Balance Amount is: ₹" + balance);
-        }else{
-            System.out.println("Invalid Amount!");
+            System.out.println("New Balance is: ₹" + balance);
+        }else if(amount < 0){
+            System.out.println("Invalid Amount! please Enter Amount Greater than 0.");
+        }
+        else{
+            System.out.println("Invalid Amount! please Enter Numeric Value.");
         }
     }
 
     public void Withdraw(double amount) {
         if (amount > 0 && amount <= balance) {
-            balance -= amount;
+            this.balance -= amount;
             System.out.println("\nWithdrawn Successfully: ₹" + amount);
             System.out.println("From Account Number: " + AccountNumber);
             System.out.println("New Balance Amount is: ₹" + balance);
