@@ -12,9 +12,9 @@ public class BankAccount implements Serializable {
                        String AccountType, String Email, double balance) {
         this.AccountHolderName = AccountHolderName;
         this.AccountNumber = AccountNumber;
-        this.balance = balance;
         this.AccountType = AccountType;
         this.Email = Email;
+        this.balance = balance;
     }
 
     //get Account Detail
@@ -56,7 +56,7 @@ public class BankAccount implements Serializable {
             System.out.println("\nWithdrawn Successfully: ₹" + amount);
             System.out.println("From Account Number: " + AccountNumber);
             System.out.println("New Balance Amount is: ₹" + balance);
-        }else if(amount < balance){
+        }else if(amount > balance){
             System.out.println("insufficient funds");
         }else{
             System.out.println("Invalid Amount!");

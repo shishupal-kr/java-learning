@@ -1,2 +1,2 @@
-Current,Rukkhi Kumari,0123456789,Rukkhi@gmail.com,0.0
-123456,Shubham,Current,shubhamkri@gmail.com,0.0
+Current,rukkhi,123456,rukkhi@gmail.com,60000.0
+Savings,shishupal,12345,shishupal@gmail.com,100000.0

@@ -1,6 +1,7 @@
 package RukkhiBank.main;
 import RukkhiBank.services.AccountManager;
 import RukkhiBank.models.BankAccount;
+import RukkhiBank.storage.FileStorage;
 
 import java.util.Scanner;
 import static RukkhiBank.services.Security.verifyAdmin;
@@ -77,6 +78,8 @@ public class RukkhiBankApp {
             }
             // Deposit the amount into the account
             account.Deposit(amount);
+            //added this line
+            FileStorage.saveAccountsToFile(AccountManager.accounts); // Save after deposit
         } catch (Exception e) {
             System.out.println("Invalid input. Please Numeric Value.");
         }
