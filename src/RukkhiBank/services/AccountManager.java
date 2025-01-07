@@ -53,10 +53,10 @@ public class AccountManager {
             }
         }
 
-    public static boolean accountExists(String accountNumber) {
-        return false;
+    public static void loadAccountsFromFile() {
     }
 
-    public static void loadAccountsFromFile() {
+    public static boolean accountExists(String accountNumber) {
+        return false;
     }
 }

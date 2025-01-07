@@ -1,2 +1,4 @@
-0987654321,Shishupal Kumar,Savings,Shishupalking@gmail.com,50000.0
-0123456789,Rukkhi Kumari,Current,Rukkhi@gmail.com,0.0
+Current,Rukkhi Kumari,0123456789,Rukkhi@gmail.com,0.0
+123456,Shubham,Current,shubhamkri@gmail.com,0.0
+Savings,Shishupal Kumar,0987654321,Shishupalking@gmail.com,50000.0
+12345,golu,Savings,golukr@gmaill.com,0.0
