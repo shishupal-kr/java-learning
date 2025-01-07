@@ -21,14 +21,14 @@ public class BankingSystem {
 
         double initialBalance = 0.0;
         // Check if the account number already exists
-        if (AccountStorage.accountExists(AccountNumber)) {
+        if (AccountManager.accountExists(AccountNumber)) {
             System.out.println("Account with this number already exists. Try again.");
             return;
         }
 
         //Bank constructor S
         Bank Accounts = new Bank(AccountName,AccountNumber,AccountType, AccountBalance, initialBalance);
-        AccountStorage.addAccount(Accounts);
+        AccountManager.addAccount(Accounts);
 
         System.out.println("Account Created Successfully: " + AccountName);
         System.out.println("Account Type : " + AccountType);
@@ -42,7 +42,7 @@ public class BankingSystem {
         System.out.println("Enter Account Number: ");
         String AccountNumber = sc.nextLine();
         // Check if the account number already exists
-        Bank account = AccountStorage.getAccount(AccountNumber);
+        Bank account = AccountManager.getAccount(AccountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
@@ -68,7 +68,7 @@ public class BankingSystem {
         String AccountNumber = sc.nextLine();
 
         // Check if the account number already exists
-        Bank account = AccountStorage.getAccount(AccountNumber);
+        Bank account = AccountManager.getAccount(AccountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
@@ -87,13 +87,14 @@ public class BankingSystem {
         }
     }
 
+    // feature for user to view balance
     private static void ViewBalance() {
         sc.nextLine();
         System.out.println("Enter Account Number: ");
         String AccountNumber = sc.nextLine();
 
         // Check if the account number already exists
-        Bank account = AccountStorage.getAccount(AccountNumber);
+        Bank account = AccountManager.getAccount(AccountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
@@ -113,10 +114,26 @@ public class BankingSystem {
         System.exit(0);  // This will terminate the program
     }
 
+    private static void DeleteAccount() {
+        sc.nextLine();
+        System.out.println("Enter Account Number: ");
+        String AccountNumber = sc.nextLine();
+
+        // Check if the account number already exists
+        Bank account = AccountManager.getAccount(AccountNumber);
+        if (account == null) {
+            System.out.println("Account not found! Please Enter Correct Account Number.");
+            return;
+        }
+        AccountManager.deleteAccount(AccountNumber);
+        System.out.println("Account Deleted Successfully: " + AccountNumber);
+        System.out.println("Account Holder Name: " + account.getAccountHolderName());
+    }
+
     public static void main(String[] args) {
 
         // Load accounts from file
-        AccountStorage.loadAccountsFromFile();
+        AccountManager.loadAccountsFromFile();
 
         System.out.println("Welcome to ABC_Bank Banking System");
         boolean running = true;
@@ -130,6 +147,7 @@ public class BankingSystem {
          System.out.println("Press 5. Exit");
          System.out.println("Enter your choice: ");
 
+         //for selecting the choice of
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -150,7 +168,7 @@ public class BankingSystem {
                     //method for admin
                 case 99:
                     if (authenticateAdmin()) {
-                        AccountStorage.viewAllAccounts();
+                        AccountManager.viewAllAccounts();
                     } else {
                         System.out.println("Unauthorized access attempt.");
                     }

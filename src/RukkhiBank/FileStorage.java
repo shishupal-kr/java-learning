@@ -3,32 +3,13 @@ package RukkhiBank;
 import java.io.*;
 import java.util.HashMap;
 
-public class AccountStorage {
+import static RukkhiBank.AccountManager.accounts;
 
-    private static HashMap<String, Bank> accounts = new HashMap<>();
-    private static final String AccountDetails = "/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt";
+public class FileStorage {
 
-    // Add a new account
-    public static void addAccount(Bank account) {
-        accounts.put(account.getAccountNumber(), account);
-        saveAccountsToFile(); // Save accounts to file after adding
-    }
+    private static final String FILE_PATH = "/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt";
 
-    // Retrieve an account by account number
-    public static Bank getAccount(String accountNumber) {
-        return accounts.get(accountNumber);
-    }
 
-    // Check if an account exists
-    public static boolean accountExists(String accountNumber) {
-        return accounts.containsKey(accountNumber);
-    }
-
-    // Remove an account (if needed in the future)
-    public static void removeAccount(String accountNumber) {
-        accounts.remove(accountNumber);
-        saveAccountsToFile(); // Save accounts to file after removing
-    }
     // Load all accounts from file
     public static void loadAccountsFromFile() {
         try {
@@ -41,7 +22,7 @@ public class AccountStorage {
             }
 
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-            accounts = (HashMap<String, Bank>) ois.readObject();
+            HashMap<String, Bank> accounts = (HashMap<String, Bank>) ois.readObject();
             ois.close();
             System.out.println("Accounts loaded successfully.");
         } catch (FileNotFoundException e) {
@@ -50,10 +31,11 @@ public class AccountStorage {
             System.out.println("Error loading accounts: " + e.getMessage());
         }
     }
+
     // Save all accounts to file in plain text format
-    private static void saveAccountsToFile() {
+    static void saveAccountsToFile(HashMap<String, Bank> accounts) {
         try {
-            File file = new File(AccountDetails);
+            File file = new File("/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt");
             System.out.println("Saving accounts to: " + file.getAbsolutePath());
 
             // Create the file if it doesn't exist
@@ -87,7 +69,6 @@ public class AccountStorage {
             System.out.println("No accounts found.");
             return;
         }
-
         System.out.println("--- List of All Accounts ---");
         for (Bank account : accounts.values()) {
             System.out.println("Account Number: " + account.getAccountNumber());
@@ -99,7 +80,12 @@ public class AccountStorage {
         }
     }
 
-    /* public static void main(String[] args) {
-        viewAllAccounts();
-    } */
+    public static void deleteAccount(String accountNumber) {
+        if (accounts.containsKey(accountNumber)) {
+            accounts.remove(accountNumber);
+            saveAccountsToFile(accounts);
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
 }

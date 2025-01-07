@@ -79,8 +79,7 @@ public class Bank implements Serializable {
         System.out.println("Account Type: " + AccountType);
         System.out.println("Current Balance: ₹" + balance);
     }
-
     public void put(String accountNumber, String accountName) {
-
     }
+
 }
