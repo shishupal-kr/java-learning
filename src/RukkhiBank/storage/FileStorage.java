@@ -1,9 +1,11 @@
-package RukkhiBank;
+package RukkhiBank.storage;
+
+import RukkhiBank.models.BankAccount;
 
 import java.io.*;
 import java.util.HashMap;
 
-import static RukkhiBank.AccountManager.accounts;
+import static RukkhiBank.services.AccountManager.accounts;
 
 public class FileStorage {
 
@@ -12,28 +14,32 @@ public class FileStorage {
 
     // Load all accounts from file
     public static void loadAccountsFromFile() {
-        try {
-            File file = new File("/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt");  // You can specify the path here if necessary
-            System.out.println("Loading accounts from: " + file.getAbsolutePath());
+        try (BufferedReader reader = new BufferedReader(new FileReader("/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String accountNumber = parts[0];
+                    String accountHolderName = parts[1];
+                    String accountType = parts[2];
+                    String email = parts[3];
+                    double balance = Double.parseDouble(parts[4]);
 
-            if (!file.exists()) {
-                System.out.println("No previous accounts found. Starting fresh.");
-                return;
+                    BankAccount account = new BankAccount(accountHolderName, accountType, accountNumber, email, balance);
+                    accounts.put(accountNumber, account);
+                }
             }
-
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-            HashMap<String, Bank> accounts = (HashMap<String, Bank>) ois.readObject();
-            ois.close();
             System.out.println("Accounts loaded successfully.");
         } catch (FileNotFoundException e) {
             System.out.println("No previous accounts found. Starting fresh.");
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             System.out.println("Error loading accounts: " + e.getMessage());
         }
     }
 
+
     // Save all accounts to file in plain text format
-    static void saveAccountsToFile(HashMap<String, Bank> accounts) {
+    public static void saveAccountsToFile(HashMap<String, BankAccount> accounts) {
         try {
             File file = new File("/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt");
             System.out.println("Saving accounts to: " + file.getAbsolutePath());
@@ -47,7 +53,7 @@ public class FileStorage {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
             // Iterate over each account and write its details in a readable format
-            for (Bank account : accounts.values()) {
+            for (BankAccount account : accounts.values()) {
                 String accountData = account.getAccountNumber() + ","
                         + account.getAccountHolderName() + ","
                         + account.getAccountType() + ","
@@ -61,31 +67,6 @@ public class FileStorage {
             System.out.println("Accounts saved successfully in text format.");
         } catch (IOException e) {
             System.out.println("Error saving accounts: " + e.getMessage());
-        }
-    }
-
-    public static void viewAllAccounts() {
-        if (accounts.isEmpty()) {
-            System.out.println("No accounts found.");
-            return;
-        }
-        System.out.println("--- List of All Accounts ---");
-        for (Bank account : accounts.values()) {
-            System.out.println("Account Number: " + account.getAccountNumber());
-            System.out.println("Account Name: " + account.getAccountHolderName());
-            System.out.println("Account Type: " + account.getAccountType());
-            System.out.println("Email: " + account.getEmail());
-            System.out.println("Balance: ₹" + account.getBalance());
-            System.out.println("----------------------------");
-        }
-    }
-
-    public static void deleteAccount(String accountNumber) {
-        if (accounts.containsKey(accountNumber)) {
-            accounts.remove(accountNumber);
-            saveAccountsToFile(accounts);
-        } else {
-            System.out.println("Account not found.");
         }
     }
 }

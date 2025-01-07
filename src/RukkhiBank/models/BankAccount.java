@@ -1,15 +1,15 @@
-package RukkhiBank;
+package RukkhiBank.models;
 import java.io.*;
 
-public class Bank implements Serializable {
+public class BankAccount implements Serializable {
     private String AccountHolderName;
     private String AccountNumber;
     private final String AccountType;
     private String Email;
     private double balance;
 
-    public Bank(String AccountHolderName, String AccountNumber,
-                String AccountType,String Email,double balance) {
+    public BankAccount(String AccountHolderName, String AccountNumber,
+                       String AccountType, String Email, double balance) {
         this.AccountHolderName = AccountHolderName;
         this.AccountNumber = AccountNumber;
         this.balance = balance;
@@ -34,16 +34,6 @@ public class Bank implements Serializable {
         return balance;
     }
 
-    //set Account details
-    private void setAccountHolderName(String AccountHolderName) {
-        this.AccountHolderName = AccountHolderName;
-    }
-    private void setAccountNumber(String AccountNumber) {
-        this.AccountNumber = AccountNumber;
-    }
-    private void setEmail(String Email){
-        this.Email = Email;
-    }
 
     //features for bank to deposit/withdraw cash
     public void Deposit(double amount) {

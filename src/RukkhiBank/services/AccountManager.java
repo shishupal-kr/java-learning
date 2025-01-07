@@ -1,31 +1,38 @@
-package RukkhiBank;
-import java.io.*;
+package RukkhiBank.services;
+import RukkhiBank.models.BankAccount;
+import RukkhiBank.storage.FileStorage;
+
 import java.util.HashMap;
+import static RukkhiBank.storage.FileStorage.saveAccountsToFile;
+
 
 public class AccountManager {
-
-         static HashMap<String, Bank> accounts = new HashMap<>();
+         public static HashMap<String, BankAccount> accounts = new HashMap<>();
 
         static {
             // Load accounts at startup
             FileStorage.loadAccountsFromFile();
         }
 
-        public static void addAccount(Bank account) {
+    public static void addAccount(BankAccount account) {
+        if (accounts.containsKey(account.getAccountNumber())) {
+            System.out.println("Account with this number already exists. Cannot add.");
+        } else {
             accounts.put(account.getAccountNumber(), account);
-            FileStorage.saveAccountsToFile(accounts);
+            saveAccountsToFile(accounts);
         }
-
+    }
         public static void deleteAccount(String accountNumber) {
             if (accounts.containsKey(accountNumber)) {
                 accounts.remove(accountNumber);
-                FileStorage.saveAccountsToFile(accounts);
+                saveAccountsToFile(accounts);
             } else {
                 System.out.println("Account not found.");
             }
         }
 
-        public static Bank getAccount(String accountNumber) {
+        public static BankAccount getAccount(String accountNumber) {
+
             return accounts.get(accountNumber);
         }
 
@@ -36,7 +43,7 @@ public class AccountManager {
             }
 
             System.out.println("--- List of All Accounts ---");
-            for (Bank account : accounts.values()) {
+            for (BankAccount account : accounts.values()) {
                 System.out.println("Account Number: " + account.getAccountNumber());
                 System.out.println("Account Name: " + account.getAccountHolderName());
                 System.out.println("Account Type: " + account.getAccountType());

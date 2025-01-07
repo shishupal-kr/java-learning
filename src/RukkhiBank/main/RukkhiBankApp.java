@@ -1,9 +1,10 @@
-package RukkhiBank;
-import java.util.HashMap;
+package RukkhiBank.main;
+import RukkhiBank.services.AccountManager;
+import RukkhiBank.models.BankAccount;
 import java.util.Scanner;
-import static RukkhiBank.Security.authenticateAdmin;
+import static RukkhiBank.services.Security.verifyAdmin;
 
-public class BankingSystem {
+public class RukkhiBankApp {
 
     //single scanner for the entire class
     private static final Scanner sc = new Scanner(System.in);
@@ -27,7 +28,7 @@ public class BankingSystem {
         }
 
         //Bank constructor S
-        Bank Accounts = new Bank(AccountName,AccountNumber,AccountType, AccountBalance, initialBalance);
+        BankAccount Accounts = new BankAccount(AccountName,AccountNumber,AccountType, AccountBalance, initialBalance);
         AccountManager.addAccount(Accounts);
 
         System.out.println("Account Created Successfully: " + AccountName);
@@ -42,7 +43,7 @@ public class BankingSystem {
         System.out.println("Enter Account Number: ");
         String AccountNumber = sc.nextLine();
         // Check if the account number already exists
-        Bank account = AccountManager.getAccount(AccountNumber);
+        BankAccount account = AccountManager.getAccount(AccountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
@@ -68,7 +69,7 @@ public class BankingSystem {
         String AccountNumber = sc.nextLine();
 
         // Check if the account number already exists
-        Bank account = AccountManager.getAccount(AccountNumber);
+        BankAccount account = AccountManager.getAccount(AccountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
@@ -94,7 +95,7 @@ public class BankingSystem {
         String AccountNumber = sc.nextLine();
 
         // Check if the account number already exists
-        Bank account = AccountManager.getAccount(AccountNumber);
+        BankAccount account = AccountManager.getAccount(AccountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
@@ -120,11 +121,17 @@ public class BankingSystem {
         String AccountNumber = sc.nextLine();
 
         // Check if the account number already exists
-        Bank account = AccountManager.getAccount(AccountNumber);
+        BankAccount account = AccountManager.getAccount(AccountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
         }
+        // Admin verification step
+        if (!verifyAdmin()) {
+            System.out.println("Invalid admin password. Deletion aborted.");
+            return;
+        }
+
         AccountManager.deleteAccount(AccountNumber);
         System.out.println("Account Deleted Successfully: " + AccountNumber);
         System.out.println("Account Holder Name: " + account.getAccountHolderName());
@@ -145,6 +152,7 @@ public class BankingSystem {
          System.out.println("Press 3. Withdraw Cash");
          System.out.println("Press 4. View Balance");
          System.out.println("Press 5. Exit");
+         System.out.println("Press 6. Delete Account");
          System.out.println("Enter your choice: ");
 
          //for selecting the choice of
@@ -165,9 +173,11 @@ public class BankingSystem {
                 case 5:
                     Exit();
                     break;
+                case 6:
+                    DeleteAccount();
                     //method for admin
                 case 99:
-                    if (authenticateAdmin()) {
+                    if (verifyAdmin()) {
                         AccountManager.viewAllAccounts();
                     } else {
                         System.out.println("Unauthorized access attempt.");
