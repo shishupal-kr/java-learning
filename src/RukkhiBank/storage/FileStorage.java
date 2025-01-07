@@ -50,7 +50,7 @@ public class FileStorage {
             }
 
             // Use FileWriter and BufferedWriter to write the file as text
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
 
             // Iterate over each account and write its details in a readable format
             for (BankAccount account : accounts.values()) {
