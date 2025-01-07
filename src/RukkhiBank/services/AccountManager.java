@@ -23,7 +23,7 @@ public class AccountManager {
         }
     }
     // Consolidated deleteAccount method
-    public static boolean deleteAccount(String accountNumber, String adminPassword) {
+    public static boolean deleteAccount(String accountNumber) {
         // Admin verification
         if (!Security.verifyAdmin()) {
             System.out.println("Invalid admin password. Deletion aborted.");

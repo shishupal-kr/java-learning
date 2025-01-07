@@ -2,10 +2,10 @@ package RukkhiBank.models;
 import java.io.*;
 
 public class BankAccount implements Serializable {
-    private String AccountHolderName;
-    private String AccountNumber;
+    private final String AccountHolderName;
+    private final String AccountNumber;
     private final String AccountType;
-    private String Email;
+    private final String Email;
     private double balance;
 
     public BankAccount(String AccountHolderName, String AccountNumber,

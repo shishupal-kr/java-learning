@@ -14,8 +14,27 @@ public class RukkhiBankApp {
         sc.nextLine();
         System.out.println("Enter Account Name: ");
         String AccountName = sc.nextLine();
-        System.out.println("Enter Account Type (Savings/Current: ");
-        String AccountType = sc.nextLine();
+        // Choose Account Type
+        System.out.println("Choose Account Type:");
+        System.out.println("1. Savings");
+        System.out.println("2. Current");
+        System.out.print("Enter your choice (1 or 2): ");
+
+        String AccountType = "";
+        int choice = sc.nextInt();
+        sc.nextLine();
+        // Set the account type based on user's choice
+        switch (choice) {
+            case 1:
+                AccountType = "Savings";
+                break;
+            case 2:
+                AccountType = "Current";
+                break;
+            default:
+                System.out.println("Invalid choice. Defaulting to 'Savings'.");
+                AccountType = "Savings"; // Default option if invalid choice
+        }
         System.out.println("Enter Account Number: ");
         String AccountNumber = sc.nextLine();
         System.out.println("Enter Email Id: ");
@@ -117,6 +136,12 @@ public class RukkhiBankApp {
     }
 
     private static void deleteAccount() {
+        // Verify admin password before deleting
+        if (!verifyAdmin()) {
+            System.out.println("Invalid admin password. Deletion aborted.");
+            return;
+        }
+
         // Prompting for account number
         sc.nextLine();
         System.out.println("Enter Account Number: ");
@@ -129,12 +154,10 @@ public class RukkhiBankApp {
             return;
         }
 
-        // Prompting for admin password
-        System.out.println("Enter Admin Password: ");
-        String adminPassword = sc.nextLine();
+
 
         // Call the deleteAccount method from AccountManager
-        if (AccountManager.deleteAccount(accountNumber, adminPassword)) {
+        if (AccountManager.deleteAccount(accountNumber)) {
             System.out.println("Account Deleted: " + account.getAccountHolderName());
         } else {
             System.out.println("Account deletion failed.");
