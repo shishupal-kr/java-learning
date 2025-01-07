@@ -116,26 +116,29 @@ public class RukkhiBankApp {
         System.exit(0);  // This will terminate the program
     }
 
-    private static void DeleteAccount() {
+    private static void deleteAccount() {
+        // Prompting for account number
         sc.nextLine();
         System.out.println("Enter Account Number: ");
-        String AccountNumber = sc.nextLine();
+        String accountNumber = sc.nextLine();
 
-        // Check if the account number already exists
-        BankAccount account = AccountManager.getAccount(AccountNumber);
+        // Get the account to ensure it exists
+        BankAccount account = AccountManager.getAccount(accountNumber);
         if (account == null) {
             System.out.println("Account not found! Please Enter Correct Account Number.");
             return;
         }
-        // Admin verification step
-        if (!verifyAdmin()) {
-            System.out.println("Invalid admin password. Deletion aborted.");
-            return;
-        }
 
-        AccountManager.deleteAccount(AccountNumber);
-        System.out.println("Account Deleted Successfully: " + AccountNumber);
-        System.out.println("Account Holder Name: " + account.getAccountHolderName());
+        // Prompting for admin password
+        System.out.println("Enter Admin Password: ");
+        String adminPassword = sc.nextLine();
+
+        // Call the deleteAccount method from AccountManager
+        if (AccountManager.deleteAccount(accountNumber, adminPassword)) {
+            System.out.println("Account Deleted: " + account.getAccountHolderName());
+        } else {
+            System.out.println("Account deletion failed.");
+        }
     }
 
     public static void main(String[] args) {
@@ -175,7 +178,7 @@ public class RukkhiBankApp {
                     Exit();
                     break;
                 case 6:
-                    DeleteAccount();
+                    deleteAccount();
                     //method for admin
                 case 99:
                     if (verifyAdmin()) {

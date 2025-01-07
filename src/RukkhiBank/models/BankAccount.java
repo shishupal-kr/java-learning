@@ -62,14 +62,4 @@ public class BankAccount implements Serializable {
             System.out.println("Invalid Amount!");
         }
     }
-
-    public void displayDetails() {
-        System.out.println("Account Holder: " + AccountHolderName);
-        System.out.println("Account Number: " + AccountNumber);
-        System.out.println("Account Type: " + AccountType);
-        System.out.println("Current Balance: ₹" + balance);
-    }
-    public void put(String accountNumber, String accountName) {
-    }
-
 }
