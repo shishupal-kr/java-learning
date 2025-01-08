@@ -58,7 +58,8 @@ public class RukkhiBankApp {
         if (amount > 0) {
             account.Deposit(amount);
             if (RukkhiBankJdbc.updateBalance(account)) {
-                System.out.println("Deposit successful! New Balance: ₹" + account.getBalance());
+               //System.out.println("Deposit successful! New Balance: ₹" + account.getBalance() +
+               //  "\nWith Account Holder Name"+ account.getAccountHolderName());
             } else {
                 System.out.println("Failed to update balance.");
             }
