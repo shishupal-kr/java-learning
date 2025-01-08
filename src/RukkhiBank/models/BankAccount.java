@@ -6,7 +6,7 @@ public class BankAccount implements Serializable {
     private final String AccountNumber;
     private final String AccountType;
     private final String Email;
-    private double balance;
+    private double Balance;
 
     public BankAccount(String AccountHolderName, String AccountNumber,
                        String AccountType, String Email, double balance) {
@@ -14,7 +14,7 @@ public class BankAccount implements Serializable {
         this.AccountNumber = AccountNumber;
         this.AccountType = AccountType;
         this.Email = Email;
-        this.balance = balance;
+        this.Balance = balance;
     }
 
     //get Account Detail
@@ -31,17 +31,17 @@ public class BankAccount implements Serializable {
         return Email;
     }
     public double getBalance() {
-        return balance;
+        return Balance;
     }
 
 
     //features for bank to deposit/withdraw cash
     public void Deposit(double amount) {
         if (amount > 0) {
-            this.balance += amount;
+            this.Balance += amount;
             System.out.println("\nDeposited Successfully: ₹" + amount);
             System.out.println("To Account Number: " + AccountNumber);
-            System.out.println("New Balance is: ₹" + balance);
+            System.out.println("New Balance is: ₹" + Balance);
         }else if(amount < 0){
             System.out.println("Invalid Amount! please Enter Amount Greater than 0.");
         }
@@ -51,12 +51,12 @@ public class BankAccount implements Serializable {
     }
 
     public void Withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            this.balance -= amount;
+        if (amount > 0 && amount <= Balance) {
+            this.Balance -= amount;
             System.out.println("\nWithdrawn Successfully: ₹" + amount);
             System.out.println("From Account Number: " + AccountNumber);
-            System.out.println("New Balance Amount is: ₹" + balance);
-        }else if(amount > balance){
+            System.out.println("New Balance Amount is: ₹" + Balance);
+        }else if(amount > Balance){
             System.out.println("insufficient funds");
         }else{
             System.out.println("Invalid Amount!");

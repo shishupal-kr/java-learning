@@ -11,7 +11,7 @@ public class AccountManager {
 
         static {
             // Load accounts at startup
-            FileStorage.loadAccountsFromFile();
+            FileStorage.loadAccountsFromFile(AccountManager.accounts);
         }
 
     public static void addAccount(BankAccount account) {

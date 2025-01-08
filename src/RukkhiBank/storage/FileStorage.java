@@ -1,11 +1,10 @@
 package RukkhiBank.storage;
 
 import RukkhiBank.models.BankAccount;
+import RukkhiBank.services.AccountManager;
 
 import java.io.*;
 import java.util.HashMap;
-
-import static RukkhiBank.services.AccountManager.accounts;
 
 public class FileStorage {
 
@@ -13,7 +12,7 @@ public class FileStorage {
 
 
     // Load all accounts from file
-    public static void loadAccountsFromFile() {
+    public static void loadAccountsFromFile(HashMap<String, BankAccount> accounts) {
         try (BufferedReader reader = new BufferedReader(new FileReader("/Users/shishupal/Coding/Learn Java/src/RukkhiBank/accounts.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -26,7 +25,7 @@ public class FileStorage {
                     double balance = Double.parseDouble(parts[4]);
 
                     BankAccount account = new BankAccount(accountHolderName, accountType, accountNumber, email, balance);
-                    accounts.put(accountNumber, account);
+                    AccountManager.accounts.put(accountNumber, account);
                 }
             }
             System.out.println("Accounts loaded successfully.");
