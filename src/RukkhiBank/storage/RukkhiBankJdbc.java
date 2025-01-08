@@ -82,4 +82,33 @@ public class RukkhiBankJdbc {
         }
         return false;
     }
+    public static void fetchAccounts() {
+        String query = "SELECT * FROM BankAccount";
+
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             Statement statement = connection.createStatement();
+             ResultSet result = statement.executeQuery(query)) {
+
+            System.out.println("--Details of Accounts in Rukkhi Bank--");
+            while (result.next()) {
+                String accountNumber = result.getString("accountNumber");
+                String accountHolderName = result.getString("accountHolderName");
+                String accountType = result.getString("accountType");
+                String email = result.getString("email");
+                double balance = result.getDouble("balance");
+
+                System.out.println("\nAccount Number: " + accountNumber);
+                System.out.println("Account Holder Name: " + accountHolderName);
+                System.out.println("Account Type: " + accountType);
+                System.out.println("Email: " + email);
+                System.out.println("Balance: ₹" + balance);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching accounts: " + e.getMessage());
+        }
+    }
+
+    public static void viewAllAccounts() {
+
+    }
 }

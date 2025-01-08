@@ -3,11 +3,9 @@ package RukkhiBank.main;
 import RukkhiBank.models.BankAccount;
 import RukkhiBank.storage.RukkhiBankJdbc;
 import java.util.Scanner;
-
 import static RukkhiBank.services.Security.verifyAdmin;
 
 public class RukkhiBankApp {
-
     private static final Scanner sc = new Scanner(System.in);
 
     // Create Account
@@ -20,7 +18,6 @@ public class RukkhiBankApp {
         System.out.println("1. Savings");
         System.out.println("2. Current");
         System.out.print("Enter your choice (1 or 2): ");
-
         String accountType;
         int choice = sc.nextInt();
         sc.nextLine();
@@ -28,11 +25,9 @@ public class RukkhiBankApp {
 
         System.out.println("Enter Account Number: ");
         String accountNumber = sc.nextLine();
-
         System.out.println("Enter Email: ");
         String email = sc.nextLine();
-
-        System.out.println("Enter Initial Balance: ");
+        System.out.println("Enter Initial Amount To Deposit: ");
         double initialBalance = sc.nextDouble();
 
         BankAccount account = new BankAccount(accountHolderName, accountNumber, accountType, email, initialBalance);
@@ -112,6 +107,7 @@ public class RukkhiBankApp {
             System.out.println("Account not found!");
         } else {
             System.out.println("Account Number: " + account.getAccountNumber());
+            System.out.println("Account Holder Name: "+ account.getAccountHolderName());
             System.out.println("Balance: ₹" + account.getBalance());
         }
     }
@@ -132,6 +128,16 @@ public class RukkhiBankApp {
         } else {
             System.out.println("Failed to delete account or account not found.");
         }
+    }
+    private static void Exit() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Press any key to exit...");
+
+        // Waiting for user input before exiting
+        sc.nextLine();  // This reads the next line of input to simulate a "Press any key to exit"
+
+        System.out.println("Exiting the Banking System... Goodbye!");
+        System.exit(0);  // This will terminate the program
     }
 
     // Main Menu
@@ -155,7 +161,15 @@ public class RukkhiBankApp {
                 case 3 -> withdraw();
                 case 4 -> viewBalance();
                 case 5 -> deleteAccount();
-                case 6 -> {
+                case 6 -> Exit();
+                case 99 -> {
+                    if (verifyAdmin()) {
+                        RukkhiBankJdbc.fetchAccounts();
+                    } else {
+                        System.out.println("Unauthorized access attempt.");
+                    }
+                }
+                case 7 -> {
                     System.out.println("Thank you for using Rukkhi Bank. Goodbye!");
                     running = false;
                 }
