@@ -1,9 +1,7 @@
 package RukkhiBank.main;
 
 import RukkhiBank.models.BankAccount;
-import RukkhiBank.services.AccountManager;
 import RukkhiBank.storage.RukkhiBankJdbc;
-
 import java.util.Scanner;
 
 import static RukkhiBank.services.Security.verifyAdmin;
@@ -120,6 +118,11 @@ public class RukkhiBankApp {
 
     // Delete Account
     private static void deleteAccount() {
+        // Verify admin password before deleting
+        if (!verifyAdmin()) {
+            System.out.println("Invalid admin password. Deletion aborted.");
+            return;
+        }
         sc.nextLine();
         System.out.println("Enter Account Number to Delete: ");
         String accountNumber = sc.nextLine();
