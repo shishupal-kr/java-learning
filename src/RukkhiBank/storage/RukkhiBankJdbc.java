@@ -1,63 +1,85 @@
 package RukkhiBank.storage;
-import java.sql.*;
 
 import RukkhiBank.models.BankAccount;
+import java.sql.*;
 
 public class RukkhiBankJdbc {
-    private static final String url = "jdbc:mysql://127.0.0.1:3306/RukkhiBank";  //enter DATABASE name here
-    private static final String username = "rukkhibank";
-    private static final String password = "bankofrukkhi";
 
-    //method to get connection
-    public static Connection getConnection() {
-        try { //Loading Driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Driver Not Found" + e.getMessage());
+    private static final String url = "jdbc:mysql://127.0.0.1:3306/RukkhiBank";  // Your database URL
+    private static final String username = "rukkhibank"; // Your database username
+    private static final String password = "bankofrukkhi"; // Your database password
+
+    // Method to insert a new account into the database
+    public static boolean insertAccount(BankAccount account) {
+        String query = "INSERT INTO BankAccount (accountHolderName, accountNumber, accountType, email, balance) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, account.getAccountHolderName());
+            statement.setString(2, account.getAccountNumber());
+            statement.setString(3, account.getAccountType());
+            statement.setString(4, account.getEmail());
+            statement.setDouble(5, account.getBalance());
+
+            return statement.executeUpdate() > 0; // Return true if the record is inserted
+        } catch (SQLException e) {
+            System.err.println("Error while inserting account: " + e.getMessage());
         }
-        return null;
+        return false;
     }
 
-    public static void fetchaccounts(){
-        //query to be run here
-        String query = ("SELECT * FROM BankAccount");
+    // Method to fetch an account by account number
+    public static BankAccount getAccount(String accountNumber) {
+        String query = "SELECT * FROM BankAccount WHERE accountNumber = ?";
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-        System.out.println("--Details of Accounts in Rukkhi Bank--");
+            statement.setString(1, accountNumber);
+            ResultSet result = statement.executeQuery();
 
-        try {   //creating connection
-            Connection connection = DriverManager.getConnection(url, username, password);
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(query);
-
-            //printing of data
-            while (result.next()) {
-                String AccountNumber = result.getString("accountNumber");
-                String AccountHolderName = result.getString("accountHolderName");
-                String AccountType = result.getString("accountType");
-                String Email = result.getString("email");
-                double Balance = result.getDouble("balance");
-
-                //creating object of BankAccount
-                BankAccount account = new BankAccount(AccountHolderName,AccountNumber, AccountType, Email, Balance);
-                System.out.println("\nAccount Holder Name: " + account.getAccountHolderName());
-                System.out.println("Account Number: " + account.getAccountNumber());
-                System.out.println("AccountType: " + account.getAccountType());
-                System.out.println("Email: " + account.getEmail());
-                System.out.println("Balance: " + account.getBalance());
-
+            if (result.next()) {
+                return new BankAccount(
+                        result.getString("accountHolderName"),
+                        result.getString("accountNumber"),
+                        result.getString("accountType"),
+                        result.getString("email"),
+                        result.getDouble("balance")
+                );
             }
-            connection.close();
-            statement.close();
-            result.close();
-
-        } catch (Exception e) {
-            System.out.println("Error while fetching accounts: " + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Error while fetching account: " + e.getMessage());
         }
+        return null; // Return null if the account is not found
     }
 
-    public static void main(String[] args) {
+    // Method to update the balance of an account
+    public static boolean updateBalance(BankAccount account) {
+        String query = "UPDATE BankAccount SET balance = ? WHERE accountNumber = ?";
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-        fetchaccounts();
+            statement.setDouble(1, account.getBalance());
+            statement.setString(2, account.getAccountNumber());
+
+            return statement.executeUpdate() > 0; // Return true if the record is updated
+        } catch (SQLException e) {
+            System.err.println("Error while updating balance: " + e.getMessage());
+        }
+        return false;
+    }
+
+    // Method to delete an account by account number
+    public static boolean deleteAccount(String accountNumber) {
+        String query = "DELETE FROM BankAccount WHERE accountNumber = ?";
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, accountNumber);
+
+            return statement.executeUpdate() > 0; // Return true if the record is deleted
+        } catch (SQLException e) {
+            System.err.println("Error while deleting account: " + e.getMessage());
+        }
+        return false;
     }
 }
