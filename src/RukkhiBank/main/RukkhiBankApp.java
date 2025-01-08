@@ -86,7 +86,7 @@ public class RukkhiBankApp {
         if (amount > 0 && account.getBalance() >= amount) {
             account.Withdraw(amount);
             if (RukkhiBankJdbc.updateBalance(account)) {
-                System.out.println("Withdrawal successful! New Balance: ₹" + account.getBalance());
+               // System.out.println("Withdrawal successful! New Balance: ₹" + account.getBalance());
             } else {
                 System.out.println("Failed to update balance.");
             }
