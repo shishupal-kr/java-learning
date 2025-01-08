@@ -4,7 +4,7 @@ import java.sql.*;
 import RukkhiBank.models.BankAccount;
 
 public class RukkhiBankJdbc {
-    private static final String url = "";
+    private static final String url = "jdbc:mysql://127.0.0.1:3306/RukkhiBank";  //enter DATABASE name here
     private static final String username = "rukkhibank";
     private static final String password = "bankofrukkhi";
 
@@ -21,8 +21,9 @@ public class RukkhiBankJdbc {
 
     public static void fetchaccounts(){
         //query to be run here
-        String query = ("SELECT * FROM ");
+        String query = ("SELECT * FROM BankAccount");
 
+        System.out.println("--Details of Accounts in Rukkhi Bank--");
 
         try {   //creating connection
             Connection connection = DriverManager.getConnection(url, username, password);
@@ -38,12 +39,12 @@ public class RukkhiBankJdbc {
                 double Balance = result.getDouble("balance");
 
                 //creating object of BankAccount
-                BankAccount account = new BankAccount(AccountNumber, AccountHolderName, AccountType, Email, Balance);
-                System.out.println("AccountNumber" + account.getAccountNumber());
-                System.out.println("AccountHolderName" + account.getAccountHolderName());
-                System.out.println("AccountType" + account.getAccountType());
-                System.out.println("Email" + account.getEmail());
-                System.out.println("Balance" + account.getBalance());
+                BankAccount account = new BankAccount(AccountHolderName,AccountNumber, AccountType, Email, Balance);
+                System.out.println("\nAccount Holder Name: " + account.getAccountHolderName());
+                System.out.println("Account Number: " + account.getAccountNumber());
+                System.out.println("AccountType: " + account.getAccountType());
+                System.out.println("Email: " + account.getEmail());
+                System.out.println("Balance: " + account.getBalance());
 
             }
             connection.close();
@@ -51,7 +52,7 @@ public class RukkhiBankJdbc {
             result.close();
 
         } catch (Exception e) {
-            System.out.println("Connection not Found !!");
+            System.out.println("Error while fetching accounts: " + e.getMessage());
         }
     }
 
