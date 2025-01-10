@@ -14,6 +14,6 @@ class Greet{
         System.out.println("hello how are you");
     }
     void greeting(String name){
-        System.out.println(name + " how are you..");
+        System.out.println("Hello " + name + " how are you..");
     }
 }
