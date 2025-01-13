@@ -13,8 +13,8 @@ public class Main {
         MyThread thread1 = new MyThread();
         MyThread thread2 = new MyThread();
 
-        thread1.run();
-        thread2.run();
+        thread1.start();
+        thread2.start();
     }
 
     static class MyThread extends Thread{
