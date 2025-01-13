@@ -1,7 +1,7 @@
 package MultiThreading;
 
 public class Main {
-    
+
     static class MyThread extends Thread{
         public void run(){
             System.out.println("thread is running...");
