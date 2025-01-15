@@ -1,37 +1,51 @@
 package Math;
-
 import java.util.Random;
 
 public class random {
     public static void main(String[] args) {
 
-        // 1. Using Math.random() - generates a random number between 0.0 (inclusive) and 1.0 (exclusive)
-        double random1 = Math.random();
-        System.out.println("Math.random(): " + random1);
+        // Using Math.random()
+        System.out.println("Random number between 0.0 and 1.0: " + Math.random());
 
-        // Generate random number in a specific range [min, max)
-        int min = 10, max = 20;
-        int randomInRange1 = (int) (Math.random() * (max - min) + min);
-        System.out.println("Random number between " + min + " and " + (max - 1) + ": " + randomInRange1);
+        // Random number in a range using Math.random()
+        int min = 10, max = 50;
+        int randomInRange = (int) (Math.random() * (max - min + 1)) + min;
+        System.out.println("Random number between " + min + " and " + max + ": " + randomInRange);
 
-        // 2. Using Random class
+
+        // Using Random class
         Random random = new Random();
-        int randomInt = random.nextInt(); // Random integer
-        System.out.println("Random integer (any range): " + randomInt);
 
-        int randomInRange2 = random.nextInt(max - min) + min; // Random in range [min, max)
-        System.out.println("Random integer between " + min + " and " + (max - 1) + ": " + randomInRange2);
+        // Random integer
+        System.out.println("Random integer: " + random.nextInt());
+        System.out.println("Random integer: " + random.nextInt(10));
 
-        double randomDouble = random.nextDouble(); // Random double [0.0, 1.0)
-        System.out.println("Random double: " + randomDouble);
+        // Random double
+        System.out.println("Random double: " + random.nextDouble());
 
-        boolean randomBoolean = random.nextBoolean(); // Random boolean
-        System.out.println("Random boolean: " + randomBoolean);
+        // Random boolean
+        System.out.println("Random boolean: " + random.nextBoolean());
+
+        // Random float
+        System.out.println("Random float: " + random.nextFloat());
+
+        // Random long
+        System.out.println("Random long: " + random.nextLong());
 
 
-        // 4. Generate Random Number Using SecureRandom (For cryptography)
-        java.security.SecureRandom secureRandom = new java.security.SecureRandom();
-        int secureRandomInt = secureRandom.nextInt(max - min) + min;
-        System.out.println("SecureRandom - Random integer between " + min + " and " + (max - 1) + ": " + secureRandomInt);
+        System.out.println("digit: " + random.nextInt(9000)+1000);
+
+
+        // Generate a random 4-digit number (between 1000 and 9999)
+        long randomDigit = random.nextLong(1000000000);
+        System.out.println("Random 4-digit number: " + randomDigit);
+        System.out.println(String.format("10digit no. start with 0: %010d", randomDigit));
+
+
+        // Random integer in a range
+        int range = random.nextInt(max - min + 1) + min;
+        System.out.println("Random integer between " + min + " and " + max + ": " + range);
+
+
     }
 }
