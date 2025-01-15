@@ -16,11 +16,4 @@ public class Main {
         thread1.start();
         thread2.start();
     }
-
-    static class MyThread extends Thread{
-        public void run(){
-
-            System.out.println("thread is running...");
-        }
-    }
 }
