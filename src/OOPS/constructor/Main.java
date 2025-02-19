@@ -6,7 +6,7 @@ public class Main {
         myMacmini Apple = new myMacmini("apple", "mac mini", 512, 8);
         myMacmini dell = new myMacmini("dell", "alienware", 512, 12);
 
-        System.out.println("company name is :");
+        System.out.println("company name is :" + Apple.company);
         System.out.println("Model is :" + Apple.model);
         System.out.println("company name is :" + dell.company);
         System.out.println("Model is : " + dell.model);
