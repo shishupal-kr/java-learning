@@ -1,6 +1,7 @@
 package DSA.Recursion.Easy;
 
 public class ques_4 {
+
     //method to print factorial of num
     public static int PrintFact(int n) {
         if (n == 1 || n == 0) {
@@ -12,8 +13,10 @@ public class ques_4 {
     }
 
     public static void main(String[] args) {
-    int n = 7;
-    int ans = PrintFact(n);
-        System.out.println(ans);
+
+         int n = 5;
+         int ans = PrintFact(n);
+         System.out.println(ans);
+
     }
 }
