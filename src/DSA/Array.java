@@ -12,11 +12,11 @@ public class Array {
     list[3] = 4;
     list[4] = 5;
 
-    System.out.println(Arrays.toString(list));
+    System.out.println("list: " + Arrays.toString(list));
 
     //or
     String[] fruit = {"apple","banana","orange","mango"};
-    System.out.println(Arrays.toString(fruit));
+    System.out.println("fruits: " + Arrays.toString(fruit));
 
 
     //best way to print is using loops
