@@ -1,4 +1,4 @@
-package DSA;
+package DSA.LinkedList;
 
 public class LinkedList {
 
@@ -6,23 +6,21 @@ public class LinkedList {
   private int size;
 
   //for getting size of list
-  // marked by this // in code, where code for getsize
-  LinkedList(){   //constructor of class for size in seperate
+  LinkedList(){
       this.size=0;
   }
 
-    class Node {
+    public static class Node {
         String data;
         Node next;
 
         Node(String data){
             this.data = data;
             this.next = null; // By default, the next pointer is null
-            size++; //
         }
     }
 
-    //add first
+    //------add first-------
     public void addFirst(String data){
         Node newNode = new Node(data);
         if(head == null){
@@ -34,7 +32,7 @@ public class LinkedList {
         head = newNode;  // Update head to point to the new node
     }
 
-    //add last
+    //-------add last-------
     public void addLast(String data){
         Node newNode = new Node(data);
             if(head == null){
@@ -48,7 +46,7 @@ public class LinkedList {
             currNode.next = newNode;  // Link the new node at the end
     }
 
-    //print
+    //-------print-------
     public void printList() {
         //what if head is null
         if(head == null){
@@ -63,7 +61,8 @@ public class LinkedList {
         }
         System.out.println("NULL");
     }
-    //delete first
+
+    //-------delete first-------
     public void deleteFirst(){
         if(head == null){ //corner case, eg- what if list is empty
             System.out.println("list is empty");
@@ -72,7 +71,8 @@ public class LinkedList {
         size--; //
         head = head.next;
     }
-    //delete last
+
+    //-------delete last-------
     public void deleteLast(){
         if(head == null){ //corner case, eg- what if list is empty
             System.out.println("list is empty");
