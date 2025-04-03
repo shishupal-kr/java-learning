@@ -1,11 +1,10 @@
 package DSA.ArrayList;
-import java.util.ArrayList;
 import java.util.Collections;
 
-public class Classroom {
+public class ArrayList {
 
     // Method to swap two numbers in the list
-    static void swap(ArrayList<Integer> list, int idx1, int idx2) {
+    static void swap(java.util.ArrayList<Integer> list, int idx1, int idx2) {
         // Step 1: Store the value at index1 in a temporary variable
         int temp = list.get(idx1);
         // Step 2: Replace index1 element with index2 element
@@ -16,9 +15,9 @@ public class Classroom {
 
     public static void main(String[] args) {
         // Creating an ArrayList to hold Integer values
-        ArrayList<Integer> list = new ArrayList<>();
+        java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
         // Creating an ArrayList to hold String values
-        ArrayList<String> list2 = new ArrayList<>();
+        java.util.ArrayList<String> list2 = new java.util.ArrayList<>();
 
         // Adding elements to the Integer ArrayList
         list.add(1);
