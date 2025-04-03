@@ -79,6 +79,20 @@ public class linkedlist {
         secondlast.next = null;
     }
 
+    public void reverse(){
+        Node prev = null;
+        Node curr = head;
+        Node next = head;
+
+        while (curr !=  null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     
     public static void main(String[] args) {
         linkedlist ll = new linkedlist();
@@ -87,9 +101,7 @@ public class linkedlist {
         ll.addLast(2);
         ll.addLast(3);
         ll.print();
-        ll.deleteFirst();
-        ll.print();
-        ll.deleteLast();
+        ll.reverse();
         ll.print();
 
     }

@@ -1,118 +1,147 @@
-package DSA.LinkedList;
+package DSA.LinkedList; // Package declaration
 
 public class LinkedList {
 
-  Node head;
-  private int size;
+    Node head; // Head node of the linked list
+    private int size; // Variable to store size of the list
 
-  //for getting size of list
-  LinkedList(){
-      this.size=0;
-  }
+    // Constructor to initialize size
+    LinkedList() {
+        this.size = 0; // Initially, the list is empty
+    }
 
+    // Node class (static so it can be used without needing an instance of LinkedList)
     public static class Node {
         String data;
-        Node next;
+        Node next; // Pointer to the next node
 
-        Node(String data){
+        Node(String data) {
             this.data = data;
-            this.next = null; // By default, the next pointer is null
+            this.next = null; // By default, next is set to null
         }
     }
 
-    //------add first-------
-    public void addFirst(String data){
-        Node newNode = new Node(data);
-        if(head == null){
+    //------- Add First (Insert at Beginning) -------
+    public void addFirst(String data) {
+        Node newNode = new Node(data); // Create a new node
+        if (head == null) { // If the list is empty
             head = newNode;
+            size++; // Increment size
             return;
         }
-        //making new node is head
-        newNode.next = head; //pointing toward current head
-        head = newNode;  // Update head to point to the new node
+        newNode.next = head; // New node points to current head
+        head = newNode; // Head is updated to new node
+        size++; // Increment size
     }
 
-    //-------add last-------
-    public void addLast(String data){
-        Node newNode = new Node(data);
-            if(head == null){
-                head = newNode;  // If list is empty, new node becomes head
-                return;
-        }
-            Node currNode = head;
-            while (currNode.next != null){
-                currNode = currNode.next; // Traverse to the end
-            }
-            currNode.next = newNode;  // Link the new node at the end
-    }
-
-    //-------print-------
-    public void printList() {
-        //what if head is null
-        if(head == null){
-            System.out.println("list is empty");
+    //------- Add Last (Insert at End) -------
+    public void addLast(String data) {
+        Node newNode = new Node(data); // Create a new node
+        if (head == null) { // If the list is empty
+            head = newNode;
+            size++; // Increment size
             return;
         }
-        //Traverse and print the list
         Node currNode = head;
-        while(currNode != null) {
+        while (currNode.next != null) { // Traverse to the last node
+            currNode = currNode.next;
+        }
+        currNode.next = newNode; // Set last node's next to new node
+        size++; // Increment size
+    }
+
+    //------- Print the Linked List -------
+    public void printList() {
+        if (head == null) { // If the list is empty
+            System.out.println("List is empty");
+            return;
+        }
+        Node currNode = head;
+        while (currNode != null) { // Traverse the list and print each node
             System.out.print(currNode.data + " -> ");
             currNode = currNode.next;
         }
-        System.out.println("NULL");
+        System.out.println("NULL"); // Indicate end of list
     }
 
-    //-------delete first-------
-    public void deleteFirst(){
-        if(head == null){ //corner case, eg- what if list is empty
-            System.out.println("list is empty");
+    //------- Delete First (Remove First Node) -------
+    public void deleteFirst() {
+        if (head == null) { // If the list is empty
+            System.out.println("List is empty");
             return;
         }
-        size--; //
-        head = head.next;
+        head = head.next; // Move head to the next node
+        size--; // Decrease size
     }
 
-    //-------delete last-------
-    public void deleteLast(){
-        if(head == null){ //corner case, eg- what if list is empty
-            System.out.println("list is empty");
+    //------- Delete Last (Remove Last Node) -------
+    public void deleteLast() {
+        if (head == null) { // If the list is empty
+            System.out.println("List is empty");
             return;
         }
-        size--; //
-        if(head.next == null){  //corner case
+        size--; // Decrease size
+        if (head.next == null) { // If there is only one node
             head = null;
             return;
         }
-
         Node secondLast = head;
         Node lastNode = head.next;
-        while (lastNode.next != null) {
+        while (lastNode.next != null) { // Traverse to second-last node
             lastNode = lastNode.next;
             secondLast = secondLast.next;
         }
-        secondLast.next = null;
+        secondLast.next = null; // Remove reference to last node
     }
 
-    public int getSize(){ //
-      return size;
+    //------- Reverse the Linked List -------
+    public void reverse() {
+        Node prev = null;
+        Node curr = head;
+        Node next = null; // Initialize to null
+
+        while (curr != null) { // Traverse the list
+            next = curr.next; // Store next node
+            curr.next = prev; // Reverse the current node's pointer
+            prev = curr; // Move prev to current node
+            curr = next; // Move curr to next node
+        }
+        head = prev; // Update head to the new first node
     }
 
+    //------- Get Size of the Linked List -------
+    public int getSize() {
+        return size; // Return the current size
+    }
+
+    //------- Main Method to Test the Linked List -------
     public static void main(String[] args) {
 
-        LinkedList list = new LinkedList();
+        LinkedList list = new LinkedList(); // Create an instance of LinkedList
 
-        list.addFirst("a");
-        list.addFirst("is");
-        list.printList();
-        list.addLast("list");
-        list.printList();
-        list.addFirst("This");
-        list.printList();
+        // Adding elements
+        list.addFirst("2");
+        list.addFirst("1");
+        list.printList(); // Output: is -> a -> NULL
 
+        list.addLast("3");
+        list.printList(); // Output: is -> a -> list -> NULL
+
+        list.addFirst("0");
+        list.printList(); // Output: This -> is -> a -> list -> NULL
+
+        // Deleting elements
         list.deleteLast();
-        list.printList();
+        list.printList(); // Output: This -> is -> a -> NULL
+
         list.deleteFirst();
-        list.printList();
-        System.out.print(list.getSize());
+        list.printList(); // Output: is -> a -> NULL
+
+        // Printing the size of the list
+        System.out.println("Size of the list: " + list.getSize()); // Output: 2
+
+        // Reversing the list
+        list.reverse();
+        list.printList(); // Output: a -> is -> NULL
     }
 }

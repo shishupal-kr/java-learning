@@ -104,3 +104,288 @@ Complete Steps for LinkedList Operations in Java
 1.	Traverse the list and skip duplicate nodes (temp.next = temp.next.next).
 
 ⸻
+
+⸻
+
+Java Linked List - Step-by-Step Explanation
+
+This README provides a detailed breakdown of a singly linked list implementation in Java. If you ever forget how it works, just go through the steps below to refresh your memory.
+
+⸻
+
+1. Understanding the Linked List Structure
+   •	A Linked List is a linear data structure where each element (node) points to the next node in the sequence.
+   •	Unlike arrays, linked lists are dynamic, meaning you don’t need to define a fixed size in advance.
+
+Node Structure:
+
+public static class Node {
+String data;  // Stores the data
+Node next;    // Pointer to the next node
+
+    Node(String data) {
+        this.data = data;
+        this.next = null; // Initially, the next pointer is null
+    }
+}
+
+📝 What happens here?
+1.	Each node holds data and a next pointer.
+2.	next is initially null because new nodes don’t have a connection yet.
+
+⸻
+
+2. Creating the Linked List
+
+class LinkedList {
+Node head;    // Points to the first node in the list
+private int size;  // Tracks the number of elements in the list
+
+    LinkedList() {
+        this.size = 0;  // The list starts empty
+    }
+}
+
+📝 What happens here?
+1.	The head variable keeps track of the first node.
+2.	The size variable keeps track of how many elements are in the list.
+
+⸻
+
+3. Inserting Elements
+
+a) Adding at the Beginning (addFirst)
+
+public void addFirst(String data) {
+Node newNode = new Node(data); // Create a new node
+newNode.next = head;  // Point the new node to the current head
+head = newNode;  // Update head to the new node
+size++;  // Increase the size of the list
+}
+
+📝 What happens step by step?
+1.	A new node is created.
+2.	It points to the current head.
+3.	head is updated to newNode, making it the new first node.
+
+Example:
+
+list.addFirst("A");
+list.addFirst("B");
+
+Linked List Now:
+
+B -> A -> NULL
+
+
+
+⸻
+
+b) Adding at the End (addLast)
+
+public void addLast(String data) {
+Node newNode = new Node(data);
+if (head == null) {
+head = newNode;
+} else {
+Node curr = head;
+while (curr.next != null) { // Traverse to the last node
+curr = curr.next;
+}
+curr.next = newNode;  // Link last node to new node
+}
+size++; // Increase size
+}
+
+📝 What happens step by step?
+1.	If the list is empty, the new node becomes head.
+2.	Otherwise, traverse to the last node.
+3.	Update the last node’s next pointer to newNode.
+
+Example:
+
+list.addFirst("A");
+list.addLast("B");
+
+Linked List Now:
+
+A -> B -> NULL
+
+
+
+⸻
+
+4. Deleting Elements
+
+a) Delete First Node
+
+public void deleteFirst() {
+if (head == null) {
+System.out.println("List is empty");
+return;
+}
+head = head.next; // Move head to the next node
+size--;  // Reduce size
+}
+
+📝 What happens step by step?
+1.	If the list is empty, print "List is empty".
+2.	Move head to the next node, effectively removing the first node.
+
+Example:
+
+list.addFirst("A");
+list.addFirst("B");
+list.deleteFirst();
+
+Linked List Now:
+
+A -> NULL
+
+
+
+⸻
+
+b) Delete Last Node
+
+public void deleteLast() {
+if (head == null) {
+System.out.println("List is empty");
+return;
+}
+if (head.next == null) { // Only one node case
+head = null;
+} else {
+Node secondLast = head;
+while (secondLast.next.next != null) { // Traverse to second-last node
+secondLast = secondLast.next;
+}
+secondLast.next = null;  // Remove reference to last node
+}
+size--; // Reduce size
+}
+
+📝 What happens step by step?
+1.	If the list is empty, print "List is empty".
+2.	If there is only one node, set head = null.
+3.	Otherwise, traverse to the second-last node and remove the last node.
+
+Example:
+
+list.addFirst("A");
+list.addLast("B");
+list.deleteLast();
+
+Linked List Now:
+
+A -> NULL
+
+
+
+⸻
+
+5. Printing the List
+
+public void printList() {
+if (head == null) {
+System.out.println("List is empty");
+return;
+}
+Node curr = head;
+while (curr != null) {
+System.out.print(curr.data + " -> ");
+curr = curr.next;
+}
+System.out.println("NULL");
+}
+
+📝 What happens step by step?
+1.	If the list is empty, print "List is empty".
+2.	Traverse through the list, printing each node.
+
+Example Output:
+
+A -> B -> C -> NULL
+
+
+
+⸻
+
+6. Reversing the List
+
+public void reverse() {
+Node prev = null;
+Node curr = head;
+Node next = null;
+
+    while (curr != null) {
+        next = curr.next;  // Store next node
+        curr.next = prev;  // Reverse current node's pointer
+        prev = curr;  // Move prev forward
+        curr = next;  // Move curr forward
+    }
+    head = prev; // Update head to new first node
+}
+
+📝 What happens step by step?
+1.	Three pointers (prev, curr, next) are used to reverse the list.
+2.	Iterate through the list and update the next pointers to point backward.
+3.	Update head to prev, which is now the first node in the reversed list.
+
+Example:
+
+Before Reverse:
+
+A -> B -> C -> NULL
+
+After Reverse:
+
+C -> B -> A -> NULL
+
+
+
+⸻
+
+7. Getting the Size
+
+public int getSize() {
+return size; // Return the current size
+}
+
+Example:
+
+System.out.println(list.getSize());
+
+Output:
+
+3
+
+
+
+⸻
+
+8. Running the Code
+   •	Save the code in a file LinkedList.java
+   •	Compile & run:
+
+javac LinkedList.java
+java LinkedList
+
+
+
+⸻
+
+Final Thoughts
+
+📌 Remember these steps when revising:
+✔ Insertion (First/Last)
+✔ Deletion (First/Last)
+✔ Traversal (Print)
+✔ Reverse
+✔ Size Tracking
+
+This README breaks down the logic step by step, so you can quickly recall how linked lists work in Java. 🚀
+
+⸻
+
+Would you like any additional explanations or modifications?
