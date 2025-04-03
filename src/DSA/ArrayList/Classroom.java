@@ -4,9 +4,8 @@ import java.util.Collections;
 
 public class Classroom {
 
-    //swap two number
+    // Method to swap two numbers in the list
     static void swap(ArrayList<Integer> list, int idx1, int idx2) {
-
         // Step 1: Store the value at index1 in a temporary variable
         int temp = list.get(idx1);
         // Step 2: Replace index1 element with index2 element
@@ -15,62 +14,67 @@ public class Classroom {
         list.set(idx2, temp);
     }
 
-
     public static void main(String[] args) {
-
+        // Creating an ArrayList to hold Integer values
         ArrayList<Integer> list = new ArrayList<>();
+        // Creating an ArrayList to hold String values
         ArrayList<String> list2 = new ArrayList<>();
 
-       list.add(1);
-       list.add(2);
-       list.add(3);
-       list.add(4);
-       list2.add("apple");
-       list2.add("orange");
-       list2.add("banana");
+        // Adding elements to the Integer ArrayList
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        // Adding elements to the String ArrayList
+        list2.add("apple");
+        list2.add("orange");
+        list2.add("banana");
 
+        // Printing the Integer ArrayList
         System.out.println(list);
 
-        // get element
+        // Get operation: retrieves the element at index 2
         list.get(2);
         System.out.println("get operation :" + list);
 
-        // remove element
+        // Remove operation: removes the element at index 2
         list.remove(2);
-        System.out.println("remove operation :" +list);
+        System.out.println("remove operation :" + list);
 
-        // set element at index
+        // Set operation: replaces the element at index 2 with 5
         list.set(2, 5);
-        System.out.println("set operation :" +list);
+        System.out.println("set operation :" + list);
 
-        //contains element
+        // Contains method: checks whether the value 1 exists in the list
         System.out.println("contain :" + list.contains(1));
+        // Checks whether the value 10 exists in the list
         System.out.println("contain : " + list.contains(10));
 
-        //arraylist size
+        // ArrayList size: returns the number of elements in the list
         System.out.println("size :" + list.size());
 
-        //print using loop
-        for(int i=0; i<list.size(); i++){
+        // Print using loop: iterates through the list to print elements in normal order
+        for(int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
 
-        //reverse of arraylist
-        for(int i=list.size()-1; i>=0; i--){
+        // Reverse print using loop: iterates through the list to print elements in reverse order
+        for(int i = list.size() - 1; i >= 0; i--) {
             System.out.println(list.get(i) + " ");
         }
 
-        //swap
-        System.out.println("Before swap: " + list );
-        swap(list,1,2);
-        System.out.println("After swap: " + list );
+        // Swap: printing the list before swapping elements
+        System.out.println("Before swap: " + list);
+        // Swapping elements at index 1 and 2
+        swap(list, 1, 2);
+        // Printing the list after swapping elements
+        System.out.println("After swap: " + list);
 
-        //sorting
+        // Sorting: sorting the list in ascending order (default)
         Collections.sort(list);
         System.out.println("after sort in asc(default): " + list);
-        Collections.sort(list,Collections.reverseOrder());
+        // Sorting the list in descending order
+        Collections.sort(list, Collections.reverseOrder());
         System.out.println("after sort in desc: " + list);
-
-
     }
 }
