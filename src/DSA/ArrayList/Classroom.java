@@ -3,6 +3,18 @@ import java.util.ArrayList;
 
 public class Classroom {
 
+    //swap two number
+    static void swap(ArrayList<Integer> list, int idx1, int idx2) {
+
+        // Step 1: Store the value at index1 in a temporary variable
+        int temp = list.get(idx1);
+        // Step 2: Replace index1 element with index2 element
+        list.set(idx1, list.get(idx2));
+        // Step 3: Replace index2 element with the value stored in temp
+        list.set(idx2, temp);
+    }
+
+
     public static void main(String[] args) {
 
         ArrayList<Integer> list = new ArrayList<>();
@@ -46,5 +58,13 @@ public class Classroom {
         for(int i=list.size()-1; i>=0; i--){
             System.out.println(list.get(i) + " ");
         }
+
+        //swap
+        System.out.println("Before swap: " + list );
+        swap(list,1,2);
+        System.out.println("After swap: " + list );
+
+
+
     }
 }
