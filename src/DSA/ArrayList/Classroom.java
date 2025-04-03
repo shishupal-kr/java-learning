@@ -1,5 +1,6 @@
 package DSA.ArrayList;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Classroom {
 
@@ -64,6 +65,11 @@ public class Classroom {
         swap(list,1,2);
         System.out.println("After swap: " + list );
 
+        //sorting
+        Collections.sort(list);
+        System.out.println("after sort in asc(default): " + list);
+        Collections.sort(list,Collections.reverseOrder());
+        System.out.println("after sort in desc: " + list);
 
 
     }
