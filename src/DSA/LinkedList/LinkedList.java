@@ -2,7 +2,7 @@ package DSA.LinkedList; // Package declaration
 
 public class LinkedList {
 
-    Node head; // Head node of the linked list
+    static Node head; // Head node of the linked list
     private int size; // Variable to store size of the list
 
     // Constructor to initialize size
@@ -122,12 +122,27 @@ public class LinkedList {
         return false;  // If the loop ends, the key was not found, return false
     }
 
+    //------ To check if a cycle exists in the linked list ------
+    public static boolean cycle() {
+        Node slow = head;  // Slow pointer moves one step at a time
+        Node fast = head;  // Fast pointer moves two steps at a time
+
+        while (fast != null && fast.next != null) { // Ensure fast doesn't reach null
+            slow = slow.next; // Move slow pointer one step forward
+            fast = fast.next.next; // Move fast pointer two steps forward
+
+            if (slow == fast) {  // If slow and fast pointers meet, a cycle exists
+                return true;
+            }
+        }
+        return false;  // If fast reaches the end, no cycle exists
+    }
+
     //------- Get Size of the Linked List -------
     public int getSize() {
         return size; // Return the current size
     }
 
-    //------- Main Method to Test the Linked List -------
     public static void main(String[] args) {
 
         LinkedList list = new LinkedList(); // Create an instance of LinkedList
@@ -160,5 +175,7 @@ public class LinkedList {
         // search in list
         System.out.println(list.search(1)); // Output: true
         System.out.println(list.search(3));  // Output: false
+
+        System.out.println("Is cycyle: " + cycle());
     }
 }
