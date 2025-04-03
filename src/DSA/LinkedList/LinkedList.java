@@ -109,6 +109,19 @@ public class LinkedList {
         head = prev; // Update head to the new first node
     }
 
+    // ----- Search for a specific integer value in the list -----
+    public boolean search(int key) {
+        Node curr = head;  // Start from the head node
+
+        while (curr != null) {  // Traverse the list until the end (null)
+            if (curr.data.equals(String.valueOf(key))) {  // Convert key to String before comparison
+                return true;  // If found, return true
+            }
+            curr = curr.next;  // Move to the next node
+        }
+        return false;  // If the loop ends, the key was not found, return false
+    }
+
     //------- Get Size of the Linked List -------
     public int getSize() {
         return size; // Return the current size
@@ -143,5 +156,9 @@ public class LinkedList {
         // Reversing the list
         list.reverse();
         list.printList(); // Output: a -> is -> NULL
+
+        // search in list
+        System.out.println(list.search(1)); // Output: true
+        System.out.println(list.search(3));  // Output: false
     }
 }
