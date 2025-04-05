@@ -6,7 +6,7 @@ public class LinkedList {
     private int size; // Variable to store size of the list
 
     // Constructor to initialize size
-    LinkedList() {
+    public LinkedList() {
         this.size = 0; // Initially, the list is empty
     }
 
