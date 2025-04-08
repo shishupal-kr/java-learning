@@ -78,6 +78,26 @@ public class Doubly_LL {
         System.out.println("null");
     }
 
+    // Reverse the doubly linked list
+    public void reverse() {
+        Node current = head;
+        Node temp = null;
+
+        // Swap next and prev for all nodes
+        while (current != null) {
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+            current = current.prev;
+        }
+
+        // After loop, temp is at the node before new head
+        if (temp != null) {
+            head = temp.prev;
+        }
+    }
+
+
     public void main(String[] args) {
 
         Doubly_LL dll = new Doubly_LL();
@@ -92,6 +112,8 @@ public class Doubly_LL {
         dll.removeFirst();
         dll.print();
         dll.removeLast();
+        dll.print();
+       dll.reverse();
         dll.print();
     }
 }
