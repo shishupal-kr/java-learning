@@ -33,6 +33,5 @@ public class Bubble_Sort {
             }
         }
         printarr(array);
-
       }
 }
