@@ -2,7 +2,7 @@ package DSA.Stack;
 
 public class Stack_lin {
     //Node
-    class Node{
+    static class Node{
         int data;
         Node next;
         Node(int data){
@@ -18,7 +18,7 @@ public class Stack_lin {
     }
 
     //push
-    public void push(int data){
+    public static void push(int data){
         Node newNode = new Node(data);
         if(isEmpty()){
             head = newNode;
@@ -29,7 +29,7 @@ public class Stack_lin {
     }
 
     //pop
-    public int pop(){
+    public static int pop(){
         if(isEmpty()){
             return -1;
         }
