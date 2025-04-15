@@ -48,7 +48,7 @@ public class Stack_lin {
         return head.data; // Return top element
     }
 
-    // ----- Recursively pushatbottom -----
+    // ----- Recursively push at bottom -----
     public static void pushAtBottom(int data) {
         if (isEmpty()) { // Check if stack is empty
             push(data); // Push if stack is empty
@@ -69,17 +69,32 @@ public class Stack_lin {
         pushAtBottom(top); // Push popped element to bottom
     }
 
+    //print
+    public void print(){
+        Node curr = head;
+        if(head == null){
+            System.out.println("list is empty");
+        }
+        while (curr != null) { // Traverse the list and print each node
+            System.out.println(curr.data);
+            curr = curr.next;
+        }
+    }
+
     public static void main(String[] args) {
         Stack_lin s = new Stack_lin(); // Create stack object
         s.push(1); // Push 1 onto stack
         s.push(2); // Push 2 onto stack
         s.push(3); // Push 3 onto stack
-        pushAtBottom(0); // Push 0 at bottom of stack
-        s.reverse(); // Reverse the stack
+        s.print();
 
-        while (!isEmpty()) { // Loop until stack is empty
-            System.out.println(s.peek()); // Print top element
-            s.pop(); // Remove top element
-        }
+        System.out.println("After push at bottom: ");
+        pushAtBottom(0);
+        s.print();
+
+        System.out.println("After reverse: ");
+        s.reverse();
+        s.print();
+
     }
 }
