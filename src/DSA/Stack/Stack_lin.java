@@ -1,7 +1,7 @@
 package DSA.Stack;
 
 public class Stack_lin {
-    // Node class to represent each element in the stack
+   
     static class Node {
         int data; // Value stored in the node
         Node next; // Reference to the next node
@@ -64,12 +64,12 @@ public class Stack_lin {
         if (isEmpty()) { // Check if stack is empty
             return; // Exit method if empty
         }
-        int top = pop(); // Pop top element
+        int top = pop(); // Pop top element & store it
         reverse(); // Recursive call to reverse the rest
         pushAtBottom(top); // Push popped element to bottom
     }
 
-    //print
+    //----- print -----
     public void print(){
         Node curr = head;
         if(head == null){
