@@ -56,6 +56,15 @@ public class Queue_lin {
         return value;
     }
 
+    // peek
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        return front.data;
+    }
+
     public static void main(String[] args) {
         Queue_lin nn = new Queue_lin();
         nn.enqueue(1);
