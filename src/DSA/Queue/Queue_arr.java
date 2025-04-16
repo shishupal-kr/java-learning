@@ -81,5 +81,7 @@ public class Queue_arr {
         System.out.println("After dequeue: ");
         q.dequeue();
         q.print();
+
+        System.out.println("peek: " + q.peek());
     }
 }
