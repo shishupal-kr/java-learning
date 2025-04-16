@@ -20,7 +20,7 @@ public class Queue_lin {
 
     //print
     void print(){
-        if(front == null){
+        if(isEmpty()){
             System.out.println("Queue is Empty");
             return;
         }
@@ -42,6 +42,20 @@ public class Queue_lin {
         rear = newNode;
     }
 
+    // dequeue
+    public int dequeue(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        int value = front.data;
+        front = front.next;
+        if(front == null){
+            rear = null;
+        }
+        return value;
+    }
+
     public static void main(String[] args) {
         Queue_lin nn = new Queue_lin();
         nn.enqueue(1);
@@ -49,6 +63,8 @@ public class Queue_lin {
         nn.enqueue(3);
         nn.enqueue(4);
 
+        nn.print();
+        nn.dequeue();
         nn.print();
     }
 }
