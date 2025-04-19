@@ -135,13 +135,3 @@ DP is heavily tested in coding interviews.
 2.	Segment Trees (Used in Range Queries)
 3.	Bit Manipulation (Used in Competitive Coding)
 4.	Fenwick Tree (Binary Indexed Tree - BIT)
-
-⸻
-
-💯 How Can I Help You?
-
-👉 Do you want Java methods for each topic?
-👉 Or should I start with Recursion and guide you step by step?
-👉 Do you need a problem list with solutions?
-
-Let me know how you’d like to proceed! 🚀
