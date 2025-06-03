@@ -33,8 +33,8 @@ public class ArrayList {
         System.out.println(list);
 
         // Get operation: retrieves the element at index 2
-        list.get(2);
-        System.out.println("get operation :" + list);
+        System.out.println("get operation :" + list.get(2));
+        System.out.println(list);
 
         // Remove operation: removes the element at index 2
         list.remove(2);
@@ -50,7 +50,7 @@ public class ArrayList {
         System.out.println("contain : " + list.contains(10));
 
         // ArrayList size: returns the number of elements in the list
-        System.out.println("size :" + list.size());
+        System.out.println("size: " + list.size());
 
         // Print using loop: iterates through the list to print elements in normal order
         for(int i = 0; i < list.size(); i++) {
