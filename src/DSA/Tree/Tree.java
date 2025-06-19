@@ -2,20 +2,21 @@ package DSA.Tree;
 
 public class Tree {
 
-    class Node{
+    static class Node{
         int data;
-        int left;
-        int right;
+        Node left;
+        Node right;
+
         Node (int data){
             this.data = data;
-            this.left = left;
-            this.right = right;
+            this.left = null;
+            this.right = null;
         }
     }
 
     static class BinaryTree{
        static int idx = -1;
-        public static Node buildTree(int Node[]) {
+        public static Node buildTree(int nodes[]) {
             idx++;
             if(nodes[idx] == -1) {
                 return null;
