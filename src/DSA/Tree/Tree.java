@@ -96,6 +96,16 @@ public class Tree {
         }
     }
 
+    public static int countNodes(Node root){
+        if(root == null){
+            return 0;
+        }
+        int leftNodes = countNodes(root.left);
+        int rightNodes = countNodes(root.right);
+
+        return leftNodes + rightNodes + 1;
+    }
+
     public static void main(String[] args) {
 
         //Array ,-1 indicates a null (no node)
@@ -113,5 +123,7 @@ public class Tree {
                 postOrder(root);
         System.out.println("levelOrder:- ");
                 levelOrder(root);
+        System.out.println("countNodes:- " + countNodes(root));
+
     }
 }
