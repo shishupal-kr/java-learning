@@ -1,4 +1,6 @@
 package DSA.Tree;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Tree {
 
@@ -67,6 +69,33 @@ public class Tree {
         postOrder(root.right);
     }
 
+    public static void levelOrder(Node root){
+        Queue<Node> q = new LinkedList<>(); // Create a queue to perform level order traversal
+        q.add(root); // Add the root node to the queue
+        q.add(null); // Add a null marker to indicate the end of the current level
+
+        while(!q.isEmpty()){
+            Node currNode = q.remove(); //Remove the front node from the queue
+
+            if(currNode == null){
+                System.out.println(); //End of one level, print newline
+                if(q.isEmpty()){
+                    break; // If queue is empty after popping null, traversal is complete
+                } else {
+                    q.add(null); // Add another null marker for the next level
+                }
+            } else {
+                System.out.print(currNode.data + " "); // Print current node's data
+                if(currNode.left != null){
+                    q.add(currNode.left); // Add left child to queue if it exists
+                }
+                if(currNode.right != null){
+                    q.add(currNode.right); // Add right child to queue if it exists
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         //Array ,-1 indicates a null (no node)
@@ -82,7 +111,7 @@ public class Tree {
                 inOrder(root);
         System.out.println("postOrder:- ");
                 postOrder(root);
-
-
+        System.out.println("levelOrder:- ");
+                levelOrder(root);
     }
 }
