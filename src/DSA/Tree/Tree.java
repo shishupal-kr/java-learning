@@ -36,6 +36,17 @@ public class Tree {
         }
     }
 
+    public static int preOrder(Node root){
+        if(root == null){
+            return -1;
+        }
+        System.out.println(root.data + " ");
+        preOrder(root.left);
+        preOrder(root.right);
+
+        return root.data;
+    }
+
     public static void main(String[] args) {
 
         //Array ,-1 indicates a null (no node)
@@ -44,5 +55,6 @@ public class Tree {
         // Build the binary tree and get the root node
         Node root = BinaryTree.buildTree(nodes);
         System.out.println("Root node data: " + root.data); // Expected output: 1
+        preOrder(root);
     }
 }
