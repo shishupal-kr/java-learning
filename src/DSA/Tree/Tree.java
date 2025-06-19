@@ -116,6 +116,26 @@ public class Tree {
         return leftsum + rightsum + root.data;
     }
 
+    public static int height(Node root){
+        if(root == null){
+            return 0;
+        }
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+
+        int myheight =Math.max(leftHeight , rightHeight) + 1;
+
+        return myheight;
+       /* int myHeight;
+
+        if (leftHeight > rightHeight) {
+            myHeight = leftHeight + 1;
+        } else {
+            myHeight = rightHeight + 1;
+            return myheight;
+        }*/
+    }
+
     public static void main(String[] args) {
 
         //Array ,-1 indicates a null (no node)
@@ -135,6 +155,7 @@ public class Tree {
                 levelOrder(root);
         System.out.println("countNodes:- " + countNodes(root));
         System.out.println("sumOfNodes:- " + sumOfNodes(root));
+        System.out.println("height:- " + height(root));
 
     }
 }
