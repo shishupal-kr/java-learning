@@ -38,13 +38,23 @@ public class Tree {
 
     public static int preOrder(Node root){
         if(root == null){
-            return -1;
+            return -1; // return -1 for null node
         }
         System.out.println(root.data + " ");
         preOrder(root.left);
         preOrder(root.right);
 
         return root.data;
+    }
+
+    public static void inOrder(Node root){
+        if(root == null){
+            return;
+        }
+
+        inOrder(root.left);
+        System.out.println(root.data + " ");
+        inOrder(root.right);
     }
 
     public static void main(String[] args) {
@@ -55,6 +65,12 @@ public class Tree {
         // Build the binary tree and get the root node
         Node root = BinaryTree.buildTree(nodes);
         System.out.println("Root node data: " + root.data); // Expected output: 1
-        preOrder(root);
+
+        System.out.println("preOrder:- ");
+                preOrder(root);
+        System.out.println("inOrder:- ");
+                inOrder(root);
+
+
     }
 }
