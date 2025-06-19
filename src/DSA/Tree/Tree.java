@@ -106,6 +106,16 @@ public class Tree {
         return leftNodes + rightNodes + 1;
     }
 
+    public static int sumOfNodes(Node root){
+        if(root == null){
+            return 0;
+        }
+        int leftsum = sumOfNodes(root.left);
+        int rightsum = sumOfNodes(root.right);
+
+        return leftsum + rightsum + root.data;
+    }
+
     public static void main(String[] args) {
 
         //Array ,-1 indicates a null (no node)
@@ -124,6 +134,7 @@ public class Tree {
         System.out.println("levelOrder:- ");
                 levelOrder(root);
         System.out.println("countNodes:- " + countNodes(root));
+        System.out.println("sumOfNodes:- " + sumOfNodes(root));
 
     }
 }
