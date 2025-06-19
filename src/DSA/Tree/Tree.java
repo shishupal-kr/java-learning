@@ -57,6 +57,16 @@ public class Tree {
         inOrder(root.right);
     }
 
+    public static void postOrder(Node root){
+        if(root == null){
+            return;
+        }
+
+        postOrder(root.left);
+        System.out.println(root.data + " ");
+        postOrder(root.right);
+    }
+
     public static void main(String[] args) {
 
         //Array ,-1 indicates a null (no node)
@@ -70,6 +80,8 @@ public class Tree {
                 preOrder(root);
         System.out.println("inOrder:- ");
                 inOrder(root);
+        System.out.println("postOrder:- ");
+                postOrder(root);
 
 
     }
