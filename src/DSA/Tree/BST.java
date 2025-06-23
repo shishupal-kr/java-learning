@@ -59,7 +59,6 @@ public class BST {
 
     }
 
-
     public static void main(String[] args) {
         int value[] = {5,1,9,3,4,11,8,2,14,7};
         Node root = null;
