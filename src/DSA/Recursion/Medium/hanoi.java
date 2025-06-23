@@ -1,4 +1,5 @@
 package DSA.Recursion.Medium;
+import java.util.Scanner;
 
 public class hanoi {
     static int Steps = 0;
@@ -23,8 +24,12 @@ public class hanoi {
     }
 
     public static void main(String[] args) {
-        int n = 5;
-        Hanoi(n,"S","H","D");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your Number: ");
+        int num = sc.nextInt();
+
+        Hanoi(num,"S","H","D");
 
         System.out.println("Total Steps: " + Steps);
 
