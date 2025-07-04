@@ -14,7 +14,7 @@ public class Selection_Sort {
 
         // Print the original array
         System.out.println("Before sorting");
-       printarr(array);
+        printarr(array);
 
         // Selection Sorting logic
         System.out.println("\nAfter sorting");
